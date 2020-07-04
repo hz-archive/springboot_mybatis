@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/springboot?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat #后台监控配置
+
+  jpa:
+    #指定数据库提供商
+    database: mysql
+    #打印SQL
+    show-sql: true
+    #是jpa层面对数据表生成策略的控制
+    generate-ddl: true #ddl数据定义语言，就是创建表的语句
+    hibernate:
+      #是jpa实现hibernate层面上对数据表生成策略的控制
+      ddl-auto: update #自动更新表结构，表不在就创建，表在，属性有变化就更新，否则，不变
+      #create 创建表，不更新
+      #指定命名策略
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis:
+  config-location: classpath:/mybatis/mybatis-config.xml #指定主配置文件
+  mapper-locations: classpath:/mybatis/mapper/*.xml # 指定xml映射文件路径
+  type-aliases-package: com.atguigu.domain # 指定mybatis别名包
+logging:
+  level:
+    com.atguigu.dao: debug # 配置日志
